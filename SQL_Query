@@ -1,4 +1,14 @@
-  -- 1. Covid Case Fatality 
+--- READ ME --- 
+These are examples of queries made after uploading the following public dataset to BigQuery: https://ourworldindata.org/covid-deaths
+
+
+
+This is a personal project
+
+--- READ ME --- 
+
+
+-- 1. Covid Case Fatality 
   a. Code that can be used to find the percentage of Covid cases that ended in patient deaths
   b. This code can be used to look at the percentage of deaths based off of location. Just substitute the WHERE 
   clause to equal any location. WHERE location LIKE %states% can help find United States or just typing united states also works. 
