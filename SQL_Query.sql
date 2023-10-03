@@ -8,10 +8,12 @@ This is a personal project
 --- READ ME --- 
 
 
--- 1. Covid Case Fatality 
+/*
+  -- 1. Covid Case Fatality 
   a. Code that can be used to find the percentage of Covid cases that ended in patient deaths
   b. This code can be used to look at the percentage of deaths based off of location. Just substitute the WHERE 
   clause to equal any location. WHERE location LIKE %states% can help find United States or just typing united states also works. 
+*/
 
 SELECT  
   location,
@@ -25,10 +27,11 @@ ORDER BY
  location
 
 
- -- 2. Population Infected 
+/* -- 2. Population Infected 
   a. Code looks at the max amount and the percentage of people infected with the country with the highest infection rate at the top 
   of the query. 
   b. Code looks at the highest infection count by Country 
+*/
 
 SELECT  
   location, 
@@ -43,8 +46,9 @@ ORDER BY
   percentage_infected desc
 
 
-
+/*
  -- 3. Continents with the highest death count allegedly 
+*/
 
 SELECT 
   location,
@@ -58,9 +62,12 @@ ORDER BY
   TotalDeathCount desc
 
 
+/*
 -- 4. New Cases and Total Deaths
   a. Code is used to create 3 new columns for different data analysis 
   b. Allows for nondestructive data cleaning for days in which there are no new cases
+*/
+  
 SELECT  
     date,  
     SUM(new_deaths) as Total_New_Deaths, 
@@ -75,10 +82,11 @@ ORDER by
 1, 2
 
 
-  
+/*  
 -- 5. Rolling Count of Vaccinations 
   a. Code allows us to join two tables in order to create a rolling count of new vaccinations per country 
   b. The column new_vaccinations is preferred over total_vaccinations because it is a daily integer that can be used to create a rolling count through partioning 
+*/
 
 SELECT dea.continent, 
   dea.location, 
@@ -97,15 +105,15 @@ ORDER BY
   
   
 
-  
- 6. Common Table Expression (CTE) for Percent of Population Vaccinated  
+/*  
+-- 6. Common Table Expression (CTE) for Percent of Population Vaccinated  
    a. Uses a CTE to do further analysis of a query like finding the percentage of a newly created column (rolling_vac_count)
    b. Can be used to do a deeper dive on the data already queried 
+*/
 
   WITH PopVsVac 
   AS 
   (
- 
   SELECT 
 dea.continent, 
 dea.location, 
@@ -126,9 +134,9 @@ SUM(vac.new_vaccinations) OVER (PARTITION BY dea.location order by dea.location,
    
   SELECT *, (rolling_vac_count/population) *100 as percent_vaccinated
   FROM PopVsVac
-
+/*
 -- 7. Creating View for Further Analysis 
-  
+*/  
 
   CREATE VIEW `sandboxplay-396500.capstone_project.percent_population_vaccinated` as 
 
